@@ -15,4 +15,5 @@ RoxygenNote: 7.1.0
 Import: lme4, optimx
 Suggests: knitr,
     rmarkdown
+Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr

@@ -1,0 +1,49 @@
+---
+title: "User Guide to PFCRE"
+author: "Lucas Nunez"
+date: "`r Sys.Date()`"
+output: pdf_document
+vignette: >
+  \VignetteIndexEntry{PFCRE}
+  \VignetteEncoding{UTF-8}
+  \VignetteEngine{knitr::knitr}
+---
+
+## Introduction
+The **PFCRE** package implements the estimation of the Penalized Flexible Correlated Random Effects model from Nunez (2017). 
+
+The PFCRE model is
+\[
+Prob(y_{it}|x_{it},z_i)=G(\alpha+x_{it}\beta+z_{i}\gamma+\eta_i)
+\]
+where $y_{it}$ is a binary outcome, $x_{it}$ is a $k$-dimensional vector of individual covariates, $z_i$ is a vector of polynomial that varies only by individual $i$ but not time $t$, and $\eta_i$ is a normally distributed random effect with mean $0$ and variance $\sigma^2$, and $G\cdot)$ is a link function (i.e. probit, logit, etc). 
+
+The vector $z_i$ is composed of polynomials of the moments of $x_{it}$ and, potentially, additional covariates $w_i$ that do not vary by $t$. 
+
+PFCRE estimates the parameters by 
+\[
+(\hat\beta,\hat\alpha,\hat\gamma,\hat\sigma)=\arg\max_{(\beta,\alpha,\gamma,\sigma)}\log L(\beta,\alpha,\gamma,\sigma)-\Pi_{\lambda}(\gamma)
+\]
+where $L(\cdot)$ is the likelihood function given by:
+\[
+\sum\limits_{i=1}^{n}\sum\limits_{t=1}^{T}\bigg[y_{it}\log(p_{it})+(1-y_{iy})\log(1-p_{it})\bigg]
+\]
+with 
+\[
+p_{it}\equiv \int\limits_{-\infty}^{\infty}G(\alpha+x_{it}\beta+z_{i}\gamma+\eta)\frac{1}{\sigma}\phi(\eta/\sigma)d\eta
+\]
+where $\phi(\cdot)$ is the standard normal distribution. 
+
+The function $\Pi_{\lambda}(\gamma)$ is the Smoothly Clipped Absolute Deviation (SCAD) penalty:
+\[
+\Pi_{\lambda}(\gamma)=\begin{cases}\lambda|\gamma| & \mbox{if } |\gamma|\le\lambda \\
+                                   -\frac{|\gamma|^2-2a\lambda|\gamma|+lambda^2}{2(a-1)} & \mbox{if } \lambda<|\gamma|\le a\lambda \\
+                                   \frac{(a+1)\lambda^2}{2} &\mbox{if } |\gamma|>a\lambda \end{cases}
+\]
+where $a=3.7$, and $\lambda$ is a tunning parameter
+
+
+
+## Basic structure of the PFCRE package
+
+

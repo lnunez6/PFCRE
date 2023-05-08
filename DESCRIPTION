@@ -1,16 +1,15 @@
 Package: PFCRE
 Type: Package
-Title: Implements Penalized Flexible Correlated Random Effects
+Title: Penalized Flexible Correlated Random Effects
 Version: 0.1.0
 Author: Lucas Nunez
 Maintainer: Lucas Nunez <lnunez6@gmu.edu>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Implements the Penalizaed Flexible Correlated Random Effects estimator, including cross-validation
 License: Open
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 7.1.0
-Import: lme4
+Import: lme4, optimx
 Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr

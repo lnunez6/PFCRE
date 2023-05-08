@@ -19,6 +19,7 @@
 #' \item{Model}{ a list with the estimates from the best model selected via Akaike Information Criterion}
 #' \item{lambda.cand}{ a vector with the original candidate values for the \code{scadpen} penalty}
 #' \item{cv}{ a vector with the model fit for the \code{labmda.cand} elements}
+#' @export
 
 
 

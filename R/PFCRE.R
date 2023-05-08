@@ -25,6 +25,7 @@
 #' \item{nobs}{ the number of observations}
 #' \item{loglik}{ the unpenalized log-likelihood}
 #' \item{formula}{ the formula used in the call}
+#' @export
 pfcre <- function (formula = NULL, addcovars = NULL, data = NULL, id = NULL,
                    family = NULL, intercept = TRUE, weights = rep(1, nobs), initial.beta,
                    mustart, eta.new, lambda = NULL, max.steps = 1000, degree = 2){
